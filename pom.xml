@@ -11,6 +11,8 @@
         <module>cloud-api-commons</module>
         <module>cloud-eureka-server01</module>
         <module>cloud-film-consumer80</module>
+        <module>cloud-filmManager-provider8010</module>
+        <module>cloud-MatchManager-provider8020</module>
     </modules>
     <packaging>pom</packaging>
 
