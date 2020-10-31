@@ -13,7 +13,7 @@ import java.util.HashMap;
  * @Date: 2020/10/25 9:12
  */
 @Component
-@FeignClient(value = "cloud-film-provider")
+@FeignClient(name = "cloud-film-provider")
 public interface ProviderFilmManager {
 
     @RequestMapping(value = "home")

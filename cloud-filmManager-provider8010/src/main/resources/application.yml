@@ -1,18 +1,28 @@
 server:
   port: 8010
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:7001/eureka/
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:7001/eureka/
 
 spring:
   application:
     name: cloud-film-provider
   profiles:
     active: prd
+
+  cloud:
+    consul:
+      # 将服务注册到consul
+      host: 59.110.48.246
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+
+
   datasource:
     username: root
     password: carrotsql321

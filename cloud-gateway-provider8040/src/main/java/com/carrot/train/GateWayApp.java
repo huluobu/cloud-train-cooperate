@@ -6,12 +6,15 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * @Author: carrot
- * @Date: 2020/10/24 21:37
+ * @Date: 2020/10/31 15:18
+ * @Description:
  */
+
 @SpringBootApplication
 @EnableDiscoveryClient
-public class FilmManagerApp {
+public class GateWayApp {
     public static void main(String[] args) {
-        SpringApplication.run(FilmManagerApp.class);
+        SpringApplication.run(GateWayApp.class, args);
     }
+
 }
