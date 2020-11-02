@@ -6,11 +6,16 @@ spring:
     name: cloud-gateway-service
   cloud:
     consul:
-      # 将服务注册到consul
       host: 59.110.48.246
       port: 8500
       discovery:
+        prefer-ip-address: true
         service-name: ${spring.application.name}
+        hostname: ${spring.cloud.client.ip-address}
+        port: ${server.port}
+        health-check-interval: 10s
+        heartbeat:
+          enabled: true
 
     gateway:
       discovery:

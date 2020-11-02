@@ -1,18 +1,34 @@
 server:
   port: 8020
 
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:7001/eureka/
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    fetch-registry: true
+#    service-url:
+#      defaultZone: http://localhost:7001/eureka/
 
 spring:
   application:
     name: cloud-Match-provider
   profiles:
     active: prd
+
+  cloud:
+    consul:
+      host: 59.110.48.246
+      port: 8500
+      discovery:
+        prefer-ip-address: true
+        service-name: ${spring.application.name}
+        hostname: ${spring.cloud.client.ip-address}
+        port: ${server.port}
+        health-check-interval: 10s
+        heartbeat:
+          enabled: true
+
+
+
   datasource:
     username: root
     password: carrotsql321
