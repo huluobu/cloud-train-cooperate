@@ -4,7 +4,9 @@ package com.carrot.train.controller;
 import com.carrot.testcloud.entities.CommonResult;
 import com.carrot.train.entity.Film;
 import com.carrot.train.service.Imp.FilmServiceImp;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +20,15 @@ import java.util.List;
  * @Author: carrot
  * @Date: 2020/10/6 9:52
  */
+@Slf4j
 @RequestMapping("manager/film")
 @RestController
 public class FilmController {
     @Autowired
     private FilmServiceImp filmServiceImp;
+
+    @Value("${spring.application.name}")
+    private String appName;
 
     @Autowired
     private KafkaTemplate<String, Object> kafkaTemplate;
@@ -40,6 +46,7 @@ public class FilmController {
     private CommonResult selectAllFilm() {
         CommonResult result = new CommonResult();
         List<Film> list = filmServiceImp.queryAllFilm();
+        log.info(appName+":list:"+list);
         result.setCode(0000);
         result.setData(list);
         result.setMessage("success");

@@ -6,6 +6,7 @@ import com.carrot.testcloud.entities.CommonResult;
 import com.carrot.train.entity.Film;
 import com.carrot.train.entity.MatchUnionFilm;
 import com.carrot.train.service.ProviderFilmManager;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,6 +20,7 @@ import java.util.List;
  * @Author: carrot
  * @Date: 2020/10/25 9:18
  */
+@Slf4j
 @Controller
 public class FilmConsumerController {
     @Resource
@@ -27,6 +29,7 @@ public class FilmConsumerController {
     @RequestMapping("consumer/home")
     public String toHomepage(HttpServletRequest request) {
         CommonResult result = providerFilmManager.toHomepage();
+        log.info("返回home页面的接收参数为："+result);
         System.out.println(request);
         List<MatchUnionFilm> list = (List<MatchUnionFilm>) result.getData();
         request.setAttribute("film",list);
@@ -36,6 +39,7 @@ public class FilmConsumerController {
     @RequestMapping("consumer/manager/film/list")
     public String toFilmList(HttpServletRequest request) {
         CommonResult result = providerFilmManager.toList();
+        log.info("返回filmlist页面的结果参数为："+result);
         System.out.println(result);
         List<Film> list = (List<Film>) result.getData();
         request.setAttribute("filmlist",list);
