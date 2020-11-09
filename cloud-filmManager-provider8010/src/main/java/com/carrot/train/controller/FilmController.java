@@ -4,13 +4,13 @@ package com.carrot.train.controller;
 import com.carrot.testcloud.entities.CommonResult;
 import com.carrot.train.entity.Film;
 import com.carrot.train.service.Imp.FilmServiceImp;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
@@ -21,6 +21,7 @@ import java.util.List;
  * @Date: 2020/10/6 9:52
  */
 @Slf4j
+@Api(tags = "电影管理")
 @RequestMapping("manager/film")
 @RestController
 public class FilmController {
@@ -42,7 +43,8 @@ public class FilmController {
 //        return "pages/manager/book_manager";
 //    }
 
-    @RequestMapping("/list")
+    @ApiOperation(value = "电影列表查询", notes="在影城电影管理页面返回所有的电影信息")
+    @GetMapping("/list")
     private CommonResult selectAllFilm() {
         CommonResult result = new CommonResult();
         List<Film> list = filmServiceImp.queryAllFilm();
@@ -71,7 +73,7 @@ public class FilmController {
         return "redirect:list";
     }*/
 
-    @RequestMapping("/add")
+    @PostMapping("/add")
     public CommonResult insertMovie(@RequestBody HashMap<String, Object> map) {
 
         String filmname = (String) map.get("filmname");
